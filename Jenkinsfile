@@ -38,15 +38,15 @@ pipeline {
             }
         }
 
-        stage (" Sonarqube Analysis "){
-            steps{
-                dir('discovery-service'){
-                   withSonarQubeEnv('sonarqube-server'){
-                    sh 'mvn sonar:sonar'
-                   } 
-                }
+        stage('SonarQube Analysis') {
+    steps {
+        dir('discovery-service') {
+            withSonarQubeEnv('sonarqube-server') {
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
             }
         }
+    }
+}
 
         stage (" Docker Image "){
             steps{

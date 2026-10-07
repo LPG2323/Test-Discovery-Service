@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
         - name: discovery-service
-          image: maitrelpg/ds:1
+          image: maitrelpg/ds:4
           ports:
             - containerPort: 8761

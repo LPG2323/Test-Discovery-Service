@@ -1,0 +1,28 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+
+metadata:
+  name: discovery-service-updater
+  namespace: argocd
+
+spec:
+  writeBackConfig:
+    method: git:secret:argocd/image-updater-git-creds
+    gitConfig:
+      repository: https://github.com/LPG2323/Test-Discovery-Service.git
+      branch: main
+      writeBackTarget: kustomization
+
+  applicationRefs:
+    - namePattern: discovery-service
+
+      images:
+        - alias: discovery
+          imageName: maitrelpg/ds
+          commonUpdateSettings:
+            updateStrategy: newest-build
+            allowTags: "regexp:^[0-9]+$"
+
+          manifestTargets:
+            kustomize:
+              name: maitrelpg/ds

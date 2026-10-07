@@ -1,2 +1,6 @@
 resources:
   - deployment.yaml
+images:
+  - name: maitrelpg/ds
+    newName: maitrelpg/ds
+    newTag: "6"
